@@ -1,8 +1,8 @@
 from flask import Blueprint
 
-projects = Blueprint('projects', __name__)
+projects = Blueprint('projects', __name__, url_prefix="/projects")
 
-@projects.route('/projects/', methods=['GET'])
+@projects.route('/', methods=['GET'])
 def get_projects():
     """Gets a list of all projects
 
@@ -12,13 +12,13 @@ def get_projects():
     pass
 
 
-@projects.route('/projects/', methods=['POST'])
+@projects.route('/', methods=['POST'])
 def create_project():
     """Creates a new project
     """
     pass
 
-@projects.route('/projects/<project_id>')
+@projects.route('/<project_id>')
 def get_project(project_id:int):
     """Gets a specific project
     
@@ -27,7 +27,7 @@ def get_project(project_id:int):
     """
     pass
 
-@projects.route('/projects/<project_id>/tasks')
+@projects.route('/<project_id>/tasks')
 def get_project_tasks(project_id:int):
     """Gets all tasks for a specific project
     

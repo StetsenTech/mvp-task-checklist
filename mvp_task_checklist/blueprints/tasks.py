@@ -1,23 +1,23 @@
 from flask import Blueprint
 from flask_login import login_required
 
-tasks = Blueprint('tasks', __name__)
+tasks = Blueprint('tasks', __name__, url_prefix='/tasks')
 
 
-@tasks.route("/tasks/")
+@tasks.route("/")
 @login_required
 def get_tasks():
     """Gets tasks for current user
     """
     pass
 
-@tasks.route('/tasks/', methods=['POST'])
+@tasks.route('/', methods=['POST'])
 def create_task():
     """Creates a new task
     """
     pass
 
-@tasks.route('/tasks/<task_id>')
+@tasks.route('/<task_id>')
 def get_task(task_id:int):
     """Gets a specific task
     

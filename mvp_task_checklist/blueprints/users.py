@@ -1,9 +1,9 @@
 from flask import Blueprint
 
-users = Blueprint('users', __name__)
+users = Blueprint('users', __name__, url_prefix='/users')
 
 
-@users.route('/users', methods=['GET'])
+@users.route('/', methods=['GET'])
 def get_users():
     """Gets a list of all users in the system
 
@@ -12,13 +12,13 @@ def get_users():
     """
     pass
 
-@users.route('/users/', methods=['POST'])
+@users.route('/', methods=['POST'])
 def create_user():
     """Creates a new user
     """
     pass
 
-@users.route('/users/<user_id>', methods=['GET'])
+@users.route('/<user_id>', methods=['GET'])
 def get_user(user_id:int):
     """Returns a list of all users
     
@@ -30,7 +30,7 @@ def get_user(user_id:int):
     """
     pass
 
-@users.route('/users/<user_id>/tasks', methods=['GET'])
+@users.route('/<user_id>/tasks', methods=['GET'])
 def get_user_tasks(user_id:int):
     """Returns a list of all tasks for users
     
