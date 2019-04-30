@@ -14,7 +14,7 @@ def status():
 
     return make_response(jsonify(message), 200)
 
-@app.route('/users')
+@app.route('/users', methods=['GET'])
 def get_users():
     """Gets a list of all users in the system
 
@@ -23,13 +23,13 @@ def get_users():
     """
     pass
 
-@app.route('/users/', methods=["POST"])
+@app.route('/users/', methods=['POST'])
 def create_user():
     """Creates a new user
     """
     pass
 
-@app.route('/users/<user_id>', methods=["GET"])
+@app.route('/users/<user_id>', methods=['GET'])
 def get_user(user_id:int):
     """Returns a list of all users
     
@@ -41,8 +41,8 @@ def get_user(user_id:int):
     """
     pass
 
-@app.route('/users/<user_id>/tasks', methods=["GET"])
-def get_user(user_id:int):
+@app.route('/users/<user_id>/tasks', methods=['GET'])
+def get_user_tasks(user_id:int):
     """Returns a list of all tasks for users
     
     Arguments:
@@ -53,7 +53,7 @@ def get_user(user_id:int):
     """
     pass
 
-@app.route('/projects/', methods=["GET"])
+@app.route('/projects/', methods=['GET'])
 def get_projects():
     """Gets a list of all projects
 
@@ -63,7 +63,7 @@ def get_projects():
     pass
 
 
-@app.route('/projects/', methods=["POST"])
+@app.route('/projects/', methods=['POST'])
 def create_project():
     """Creates a new project
     """
@@ -94,7 +94,7 @@ def get_tasks():
     """
     pass
 
-@app.route("/tasks/", methods=["POST"])
+@app.route('/tasks/', methods=['POST'])
 def create_task():
     """Creates a new task
     """
