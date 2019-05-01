@@ -1,4 +1,6 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify, make_response, request
+
+from ..components import ProjectComponent
 
 projects = Blueprint('projects', __name__, url_prefix="/projects")
 
@@ -9,14 +11,17 @@ def get_projects():
     Return:
         List of all projects available
     """
-    pass
+    return make_response(jsonify(data=ProjectComponent.get_projects()), 200)
 
 
 @projects.route('/', methods=['POST'])
 def create_project():
     """Creates a new project
     """
-    pass
+    request_data = request.get_json()
+    return make_response(
+        jsonify(ProjectComponent.create_project(request_data)), 200
+    )
 
 @projects.route('/<project_id>')
 def get_project(project_id:int):
@@ -25,7 +30,7 @@ def get_project(project_id:int):
     Arguments:
         project_id {int} -- ID of project to get information for
     """
-    pass
+    return make_response(jsonify(ProjectComponent.get_project(project_id)), 200)
 
 @projects.route('/<project_id>/tasks')
 def get_project_tasks(project_id:int):

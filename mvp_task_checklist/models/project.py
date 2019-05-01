@@ -1,12 +1,10 @@
-from peewee import CharField, DateField, ForeignKeyField, TextField
+from peewee import CharField, ForeignKeyField, TextField
 
 from .base import BaseModel
 from .user import User
 
 class Project(BaseModel):
     """Model for the Projects table"""
-    name = CharField()
+    name = CharField(null=False)
     desc = TextField()
-    user = ForeignKeyField(User, backref='projects', null=False)
-    created = DateField()
-    modified = DateField()
+    user = ForeignKeyField(User, backref='created_projects', null=False)
