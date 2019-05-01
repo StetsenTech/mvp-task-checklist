@@ -12,3 +12,7 @@ class User(BaseModel):
     password = SimplePasswordField(salt='test', null=False)
     created = DateField(default=datetime.datetime.now)
     modified = DateField(default=datetime.datetime.now)
+
+    @classmethod
+    def get_by_email(cls, email:str):
+        return cls.get(email=email)
