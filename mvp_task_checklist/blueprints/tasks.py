@@ -1,21 +1,24 @@
-from flask import Blueprint
+from flask import Blueprint, request, make_response, jsonify
 from flask_login import login_required
 
+from ..components import TaskComponent
 tasks = Blueprint('tasks', __name__, url_prefix='/tasks')
 
 
 @tasks.route("/")
-@login_required
 def get_tasks():
-    """Gets tasks for current user
+    """Gets tasks for current task
     """
-    pass
+    return make_response(jsonify(data=TaskComponent.get_tasks()), 200)
 
 @tasks.route('/', methods=['POST'])
 def create_task():
     """Creates a new task
     """
-    pass
+    request_data = request.get_json()
+    return make_response(
+        jsonify(TaskComponent.create_task(request_data)), 200
+    )
 
 @tasks.route('/<task_id>')
 def get_task(task_id:int):
@@ -24,4 +27,4 @@ def get_task(task_id:int):
     Arguments:
         task_id {int} -- ID of task to get information about
     """
-    pass
+    return make_response(jsonify(TaskComponent.get_task(task_id)), 200)

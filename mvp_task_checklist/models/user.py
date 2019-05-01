@@ -14,3 +14,4 @@ class User(BaseModel):
     @classmethod
     def get_by_email(cls, email:str):
         return cls.get(email=email)
+    

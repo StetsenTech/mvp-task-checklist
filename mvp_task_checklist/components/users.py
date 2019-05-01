@@ -46,3 +46,16 @@ class UserComponent():
 
         excludes = [User.password]
         return model_to_dict(user, backrefs=True, exclude=excludes, max_depth=1)
+
+    def get_user_tasks(user_id:int) -> dict:
+        """Gets a user 
+        
+        Arguments:
+            user_id {int} -- ID of user
+        
+        Returns:
+            dict -- Data for the user
+        """
+        user = User.get_by_id(user_id)
+        return [model_to_dict(task, recurse=False) for task in user.assigned_tasks]
+

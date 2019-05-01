@@ -22,7 +22,6 @@ class ProjectComponent():
 
         return model_to_dict(project)
 
-
     def get_projects() -> list:
         """Gets a set of projects
         
@@ -43,3 +42,15 @@ class ProjectComponent():
         """
         project = Project.get_by_id(project_id)
         return model_to_dict(project)
+
+    def get_project_tasks(project_id:int) -> dict:
+        """Gets a project tasks 
+        
+        Arguments:
+            project_id {int} -- ID of project
+        
+        Returns:
+            dict -- Data for the project
+        """
+        project = Project.get_by_id(project_id)
+        return [model_to_dict(task, recurse=False) for task in project.tasks]

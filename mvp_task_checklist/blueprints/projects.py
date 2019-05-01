@@ -39,4 +39,5 @@ def get_project_tasks(project_id:int):
     Arguments:
         project_id {int} -- ID of project to get tasks for
     """
-    pass
+    
+    return make_response(jsonify(ProjectComponent.get_project_tasks(project_id)), 200)

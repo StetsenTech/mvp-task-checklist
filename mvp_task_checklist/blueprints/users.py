@@ -45,4 +45,4 @@ def get_user_tasks(user_id:int):
     Return:
         Resposne containing a list of users tasks
     """
-    pass
+    return make_response(jsonify(UserComponent.get_user_tasks(user_id)), 200)
