@@ -1,5 +1,5 @@
 from peewee import (
-    BooleanField, CharField, DateField, ForeignKeyField, TextField
+    BooleanField, CharField, ForeignKeyField, TextField
 )
 
 from .base import BaseModel
@@ -15,5 +15,3 @@ class Task(BaseModel):
     assignee = ForeignKeyField(User, backref='assigned_tasks')
     is_completed = BooleanField(default=False)
     parent = ForeignKeyField('self', null=True, backref='children')
-    created = DateField()
-    modified = DateField()

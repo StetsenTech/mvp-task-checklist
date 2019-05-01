@@ -1,11 +1,14 @@
-from peewee import Model, SqliteDatabase
-from playhouse.flask_utils import PaginatedQuery
+import datetime
 
+from peewee import Model, SqliteDatabase, DateField
 
 db = SqliteDatabase('mvp-task-checklist.db')
 
 class BaseModel(Model):
     """Base model for tables"""
+    created = DateField(default=datetime.datetime.now)
+    modified = DateField(default=datetime.datetime.now)
+
     class Meta:
         database = db
 
