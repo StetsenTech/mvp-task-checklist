@@ -22,7 +22,6 @@ class UserComponent():
 
         return model_to_dict(user)
 
-
     def get_users() -> list:
         """Gets a set of users
         
@@ -30,7 +29,9 @@ class UserComponent():
             list[dict] -- List of user data
         """
         users = User.get_all()
-        return [model_to_dict(user) for user in users]
+        
+        excludes = [User.password]
+        return [model_to_dict(user, recurse=False, exclude=excludes) for user in users]
 
     def get_user(user_id:int) -> dict:
         """Gets a user 
@@ -42,4 +43,6 @@ class UserComponent():
             dict -- Data for the user
         """
         user = User.get_by_id(user_id)
-        return model_to_dict(user, backrefs=True)
+
+        excludes = [User.password]
+        return model_to_dict(user, backrefs=True, exclude=excludes, max_depth=1)
